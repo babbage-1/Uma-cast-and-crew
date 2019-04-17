@@ -7,6 +7,7 @@ const port = 2002;
 
 let database = 'fandangit';
 mongoose.connect(`mongodb://localhost/${database}`, { useNewUrlParser: true });
+app.use(cors());
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -14,7 +15,7 @@ db.once('open', function() {
   console.log(`connected to ${database}!`);
 });
 
-app.use('/', express.static(__dirname + '/../client/dist'));
+app.use('/', express.static(__dirname + '/../client'));
 
 // === THIS IS FOR TESTING GETTING DIFFERENT MOVIES BY NAME OR id === //
 // app.use('/*/styles.css', express.static(__dirname + '/../client'));
@@ -22,6 +23,7 @@ app.use('/', express.static(__dirname + '/../client/dist'));
 
 app.use(cors());
 app.use(express.json());
+
 
 app.get('/actors', (req, res) => {
   // console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
