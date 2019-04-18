@@ -15,7 +15,9 @@ db.once('open', function() {
   console.log(`connected to ${database}!`);
 });
 
-app.use('/', express.static(__dirname + '/../client'));
+// app.use('/', express.static(__dirname + '/../client'));
+app.use('/*', express.static(__dirname + '/../client'));
+
 
 // === THIS IS FOR TESTING GETTING DIFFERENT MOVIES BY NAME OR id === //
 // app.use('/*/styles.css', express.static(__dirname + '/../client'));

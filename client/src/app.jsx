@@ -43,11 +43,11 @@ class App extends React.Component {
 
   getCast() {
     let urlID = window.location.pathname
-    .split('')
-    .filter((char) => {
-      return !isNaN(char);
-    })
-    .join('');
+      .split('')
+      .filter((char) => {
+        return !isNaN(char);
+      })
+      .join('');
 
     fetch(`http://localhost:2002/actors?movieId=${urlID || 1}`/*, {
       method: "GET",
