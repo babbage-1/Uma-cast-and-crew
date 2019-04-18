@@ -14,9 +14,9 @@ const Name = window.styled.div`
   font-size: 20px;
   color: #4c4c4c;
   text-transform: uppercase;
-  :hover {
-    cursor: pointer;
-  }
+  // :hover {
+  //   cursor: pointer;
+  // }
 `;
 
 const Role = window.styled.div`

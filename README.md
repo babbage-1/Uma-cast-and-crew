@@ -1,9 +1,9 @@
-# Daniel-Burns
-FEC cast and crew service
+# CRUD-API
+cast & crew carousel
 
 # Project Name
 
-> Project description
+> cast & crew carousel
 
 ## Related Projects
 
