@@ -17,6 +17,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movieId: 1,
+      urlID: parseInt(window.location.href.split('/')[3]),
       title: '2001: A SPACE ODYSSEY',
       cast: []
     };
@@ -42,20 +43,7 @@ class App extends React.Component {
   // === GET CAST MEMBERS BASED ON MOVIE ID === //
 
   getCast() {
-    let urlID = window.location.pathname
-      .split('')
-      .filter((char) => {
-        return !isNaN(char);
-      })
-      .join('');
-
-    fetch(`http://localhost:2002/actors?movieId=${urlID || 1}`/*, {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "Content-Type":"application/json"
-      }
-    }*/)
+    fetch(`http://localhost:2002/actors?movieId=${this.state.urlID}`)
       .then(res => res.json())
       .then(castInfo => {
         console.log('cast info: ', castInfo);
