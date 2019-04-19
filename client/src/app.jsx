@@ -53,7 +53,7 @@ class App extends React.Component {
         console.log('cast info: ', castInfo);
         this.setState({
           cast: castInfo
-        })
+        });
       }
       )
       .catch(err => {

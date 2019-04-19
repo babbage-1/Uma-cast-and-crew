@@ -6,6 +6,9 @@ npm
 npm-debug.log
 node_modules/
 
+## VS CODE##
+.vscode
+
 pids
 *.pid
 logs
