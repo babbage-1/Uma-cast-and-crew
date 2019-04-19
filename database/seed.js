@@ -9,8 +9,8 @@ var counter = 1;
 var limit = (Math.floor(Math.random() * (6 - 3)) + 3);
 const dataGen = () => {
   writer.pipe(fs.createWriteStream('data.csv'));
-  for (let i = 0; i < 1; i++) {
-    movieId++
+  for (let i = 0; i < 1000000; i++) {
+    movieId++;
     for (let j = 0; j < limit; j++) {
       writer.write({
         id: counter++,
@@ -20,7 +20,7 @@ const dataGen = () => {
         role: faker.name.findName(),
         photo: faker.image.avatar(),
         bio: faker.lorem.paragraph(),
-        filmography: `[ ${faker.random.word()}, ${faker.random.word()}, ${faker.random.word()} ]`
+        filmography: `{ ${faker.random.word()}, ${faker.random.word()}, ${faker.random.word()} }`
       });
     }
   }
@@ -29,3 +29,5 @@ const dataGen = () => {
 };
 
 dataGen();
+
+// filmography: `[ ${faker.random.word()}, ${faker.random.word()}, ${faker.random.word()} ]`
