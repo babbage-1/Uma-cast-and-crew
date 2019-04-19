@@ -12,7 +12,7 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "seed-db": "mongoimport --db fandangit --collection actors --drop --file database/fandangit-cast-2001.json",
-    "newSeed": "node database/seed.js"
+    "newSeed": "node --max_old_space_size=8048 ./database/movieSeed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

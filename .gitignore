@@ -8,6 +8,8 @@ node_modules/
 
 ## VS CODE##
 .vscode
+actorData.csv
+movieData.csv
 
 pids
 *.pid
