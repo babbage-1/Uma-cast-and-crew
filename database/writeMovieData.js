@@ -3,7 +3,8 @@ const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
 const actorGen = require('./writeactorData');
 
-var movieId = 0;
+let movieId = 0;
+let counter = 1;
 
 //creates movie csv file
 const movieGen = () => {
@@ -14,6 +15,7 @@ const movieGen = () => {
     var randInt = (Math.floor(Math.random() * (6 - 3)) + 3);
     for (let j = 0; j < randInt; j++) {
       writer.write({
+        id: counter++,
         movieId: movieId,
         actor: (Math.floor(Math.random() * (1000 - 1)) + 1)
       });
@@ -26,7 +28,7 @@ const movieGen = () => {
 //This function creates csv file for 10M movies for movies table
 movieGen();
 //This function creates csv file for 1,000 actors for actors table
-actorGen.actorGen();
+// actorGen.actorGen();
 
 
 
