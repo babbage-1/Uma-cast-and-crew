@@ -5,14 +5,16 @@
   "author": "Daniel Burns",
   "license": "",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=10.15.3"
   },
   "scripts": {
     "test": "jest --coverage",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "seed-db": "mongoimport --db fandangit --collection actors --drop --file database/fandangit-cast-2001.json",
-    "newSeed": "node --max_old_space_size=8048 ./database/movieSeed.js"
+    "newSeed": "node --max_old_space_size=8048 ./database/movieSeed.js",
+    "seed:postgres:actor": "node --max-old-space-size=4096 ./database/pgSchemaActorInfo.js",
+    "seed:postgres:movie": "node --max-old-space-size=4096 ./database/pgSchemaMovieInfo.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
