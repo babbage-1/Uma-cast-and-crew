@@ -1,6 +1,6 @@
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
-var writer = csvWriter();
+const writer = csvWriter();
 const faker = require('faker');
 
 var counter = 1;

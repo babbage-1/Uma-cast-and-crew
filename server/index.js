@@ -22,6 +22,21 @@ app.use('/:id', express.static('client/dist'));
 app.use(cors());
 app.use(express.json());
 
+//Postres query SELECT * from ActorInfo INNER JOIN MovieInfo ON movieinfo.ACTORID=actorInfo.ID WHERE movieinfo.movieid=movieid;
+
+app.get('/actors/:id', (req, res) => {
+  // console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
+  let movieId = req.params.id;
+  console.log(movieId);
+  dbIndex.getActors(movieId, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log(`actors GET error=${err}`);
+    }
+    res.send(results);
+  });
+});
+
 app.get('/actors/:id', (req, res) => {
   // console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
   let movieId = req.params.id;
