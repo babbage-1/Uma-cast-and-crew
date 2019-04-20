@@ -27,4 +27,3 @@ const actorGen = () => {
 
 module.exports.actorGen = actorGen;
 
-// var limit = (Math.floor(Math.random() * (6 - 3)) + 3);

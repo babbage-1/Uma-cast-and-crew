@@ -15,7 +15,7 @@ const generateActors = function() {
   }
   return arr;
 };
-//creates movie file
+//creates movie csv file
 const movieGen = () => {
   console.time('timing seed movie Gen');
   writer.pipe(fs.createWriteStream('movieData.csv'));
