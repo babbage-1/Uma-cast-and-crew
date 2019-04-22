@@ -10,6 +10,7 @@ node_modules/
 .vscode
 actorData.csv
 movieData.csv
+movieDataNoID.csv
 
 pids
 *.pid
