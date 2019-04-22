@@ -17,6 +17,7 @@
     "seed:postgres:movie": "node --max-old-space-size=4096 ./database/seedPostgresqlMovie.js"
   },
   "dependencies": {
+    "cassandra-driver": "^4.0.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongodb": "^3.2.2",
@@ -30,6 +31,8 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "acorn": "^6.1.1",
+    "acorn-dynamic-import": "^4.0.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
