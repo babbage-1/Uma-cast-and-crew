@@ -14,7 +14,9 @@
     "seed-db": "mongoimport --db fandangit --collection actors --drop --file database/fandangit-cast-2001.json",
     "newSeed": "node --max_old_space_size=8048 ./database/writeMovieData.js",
     "seed:postgres:actor": "node --max-old-space-size=4096 ./database/seedPostgresqlActor.js",
-    "seed:postgres:movie": "node --max-old-space-size=4096 ./database/seedPostgresqlMovie.js"
+    "seed:postgres:movie": "node --max-old-space-size=4096 ./database/seedPostgresqlMovie.js",
+    "seed:cassandra:movie":"$HOME/Desktop/HRR37/apache-cassandra-3.11.4/bin/cqlsh 127.0.0.1 -f  /Users/umaabrami/Desktop/HRR37/hrr37-SDC/cast-and-crew-Daniel/database/cassandraMovie.cql",
+    "seed:cassandra:actor":"$HOME/Desktop/HRR37/apache-cassandra-3.11.4/bin/cqlsh 127.0.0.1 -f /Users/umaabrami/Desktop/HRR37/hrr37-SDC/cast-and-crew-Daniel/database/cassandraActor.cql"
   },
   "dependencies": {
     "cassandra-driver": "^4.0.0",
