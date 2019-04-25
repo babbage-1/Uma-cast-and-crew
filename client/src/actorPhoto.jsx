@@ -87,7 +87,7 @@ class ActorPhoto extends React.Component {
             <div className="content">{this.props.actor.bio}</div>
             <div className="header">Filmography:</div>
             <div className="content">
-              {this.props.actor.filmography.map((film, index) => (<div key={index}>{film.title}</div>))}
+              {this.props.actor.filmography.map((film, index) => (<div key={index}>{film}</div>))}
             </div>
           </BioModal>
         </Popup>
