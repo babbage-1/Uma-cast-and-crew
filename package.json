@@ -19,6 +19,8 @@
     "seed:cassandra:actor": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraActor.cql"
   },
   "dependencies": {
+    "acorn": "^6.1.1",
+    "acorn-dynamic-import": "^4.0.0",
     "cassandra-driver": "^4.0.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
