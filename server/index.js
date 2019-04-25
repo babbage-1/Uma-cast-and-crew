@@ -11,8 +11,6 @@ app.use('/:id', express.static('client/dist'));
 app.use(cors());
 app.use(express.json());
 
-
-
 app.get('/actors/:id', (req, res) => {
   let movieId = [req.params.id];
   console.log(movieId);
@@ -36,6 +34,22 @@ app.post('/actors/add', (req, res) => {
     res.send(`User added with ID: ${id}`);
   });
 });
+
+app.put('/actors/:id', (req, res) => {
+  const {name, title, role, photo, bio, filmography} = req.body;
+  let id = [req.params.id];
+  console.log(req.params.id);
+  console.log('PUT', name, title, role, photo, bio, filmography, id);
+  db.updateActor(name, title, role, photo, bio, filmography, id, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log(`actors PUT error=${err}`);
+    }
+    res.send(`User updated for ID: ${id}`);
+  });
+});
+
+
 
 // app.get('/actors/:id', (req, res) => {
 //   let movieId = req.params.id;

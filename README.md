@@ -47,7 +47,7 @@ Create a RESTful API for a resource named `cows` that responds to the following 
 GET - /actors/:id
 Get all actors for a specific movie.
 
-POST - /actors/add/:id
+POST - /actors/add
 Add an actor to the database for a specific movie.
 
 PUT - /actors/update/:id

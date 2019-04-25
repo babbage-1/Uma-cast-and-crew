@@ -30,7 +30,20 @@ const createActor = (id, name, title, role, photo, bio, filmography, callback) =
   });
 };
 
+const updateActor = (name, title, role, photo, bio, filmography, id, callback) => {
+  pool.query(`UPDATE actorInfo SET name= $1, title=$2, role=$3, photo=$4, bio=$5, filmography=$6 WHERE id=$7`, [name, title, role, photo, bio, filmography, id], (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+// UPDATE users SET
+
 module.exports = {
   getActorById,
-  createActor
+  createActor,
+  updateActor
 };

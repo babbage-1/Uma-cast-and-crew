@@ -1,5 +1,7 @@
 const { Pool} = require('pg');
 const path = require('path');
+const { config } = require('./config');
+// const pool = new Pool(config);
 const pool = new Pool({
   user: 'postgres',
   host: '127.0.0.1',
@@ -8,7 +10,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-(async () => {
+const seedPostgresMovie = async () => {
   const client = await pool.connect();
 
   try {
@@ -18,6 +20,7 @@ const pool = new Pool({
     console.log('creating movieinfo table!');
     await client.query(`
       CREATE TABLE IF NOT EXISTS MovieInfo(
+        id NUMERIC NOT NULL,
         movieId NUMERIC NOT NULL,
         actorId NUMERIC NOT NULL
         );
@@ -27,6 +30,11 @@ const pool = new Pool({
     const copyPath = path.join(__dirname, '../movieData.csv');
     await client.query(`
       COPY MovieInfo FROM '${copyPath}' WITH (FORMAT CSV, HEADER);
+    `);
+
+    console.log('adding index to column named "movieid"!');
+    await client.query(`
+    CREATE INDEX movieidindex ON movieinfo (id);
     `);
 
     console.log('commiting!');
@@ -41,6 +49,6 @@ const pool = new Pool({
     console.log('releasing...');
     client.release();
   }
-})().catch(e => console.error(e.stack));
+};
 
-
+seedPostgresMovie().catch(e => console.error(e.stack));
