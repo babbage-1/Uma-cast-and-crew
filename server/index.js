@@ -35,9 +35,8 @@ app.post('/actors/add', (req, res) => {
   });
 });
 
-app.put('/actors/:id', (req, res) => {
-  const {name, title, role, photo, bio, filmography} = req.body;
-  let id = [req.params.id];
+app.put('/actors/update', (req, res) => {
+  const {name, title, role, photo, bio, filmography, id} = req.body;
   console.log(req.params.id);
   console.log('PUT', name, title, role, photo, bio, filmography, id);
   db.updateActor(name, title, role, photo, bio, filmography, id, (err, results) => {
@@ -49,7 +48,17 @@ app.put('/actors/:id', (req, res) => {
   });
 });
 
-
+app.delete('/actors/delete', (req, res) => {
+  const {id} = req.body;
+  console.log(id);
+  db.deleteActor(id, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log(`actors DELETE error=${err}`);
+    }
+    res.send(`User deleted for ID: ${id}`);
+  });
+});
 
 // app.get('/actors/:id', (req, res) => {
 //   let movieId = req.params.id;

@@ -40,10 +40,22 @@ const updateActor = (name, title, role, photo, bio, filmography, id, callback) =
   });
 };
 
+
+const deleteActor = (id, callback) => {
+  pool.query(`DELETE FROM actorInfo WHERE id=$1`, [id], (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
 // UPDATE users SET
 
 module.exports = {
   getActorById,
   createActor,
-  updateActor
+  updateActor,
+  deleteActor
 };
