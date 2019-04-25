@@ -12,6 +12,10 @@ get-pip.py
 ## VS CODE##
 .vscode
 
+##DATABASE FOLDER##
+database/CSVfilewrite
+database/cassandra
+database/mongo
 
 ## CSV FILES##
 actorData.csv
