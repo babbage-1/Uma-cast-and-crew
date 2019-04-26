@@ -19,20 +19,22 @@ app.get('/actors/:id', (req, res) => {
       res.sendStatus(500);
       console.log(`actors GET error=${err}`);
     }
-    res.send(results.rows);
+    res.status(200).json(results.rows);
   });
 });
 
-app.post('/actors/add', (req, res) => {
-  const {id, name, title, role, photo, bio, filmography} = req.body;
-  console.log(id, name, title, role, photo, bio, filmography);
-  db.createActor(id, name, title, role, photo, bio, filmography, (err, results) => {
-    if (err) {
-      res.sendStatus(500);
-      console.log(`actors POST error=${err}`);
+app.post('/actors/add', async (req, res) => {
+  try {
+    const {name, title, role, photo, bio, filmography, movieId} = req.body;
+    console.log(name, title, role, photo, bio, filmography, movieId);
+    const rowCount = await db.createActor(name, title, role, photo, bio, filmography, movieId);
+    res.status(201).send(`User added with row count: ${rowCount}`);
+  } catch (e) {
+    if (Error.Message === 'Error Inside DB') {
+      res.statusCode(500);
     }
-    res.send(`User added with ID: ${id}`);
-  });
+
+  }
 });
 
 app.put('/actors/update', (req, res) => {

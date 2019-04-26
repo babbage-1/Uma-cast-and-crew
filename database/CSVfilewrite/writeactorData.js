@@ -3,7 +3,6 @@ const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
 const faker = require('faker');
 
-var counter = 1;
 
 //creates actor table
 const actorGen = () => {
@@ -11,7 +10,6 @@ const actorGen = () => {
   writer.pipe(fs.createWriteStream('actorData.csv'));
   for (let i = 0; i < 1000; i++) {
     writer.write({
-      id: counter++,
       name: faker.name.findName(),
       title: faker.random.word(),
       role: faker.name.findName(),
