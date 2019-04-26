@@ -45,13 +45,13 @@ Create a RESTful API for a resource named `cows` that responds to the following 
 
 
 GET - /actors/:id
-Get all actors for a specific movie.
+Get all actors for a specific movie from the database.
 
-POST - /actors/add/:id
-Add an actor to the database for a specific movie.
+POST - /actors/add
+Add an actor to the database.
 
-PUT - /actors/update/:id
-Update an actor in the database for a specific movie.
+PUT - /actors/update/
+Update an actor in the database.
 
-DELETE - /actors/remove/:id
-Remove an actor from the database for a specific movie.
+DELETE - /actors/remove/
+Remove an actor from the database.

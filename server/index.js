@@ -11,8 +11,6 @@ app.use('/:id', express.static('client/dist'));
 app.use(cors());
 app.use(express.json());
 
-
-
 app.get('/actors/:id', (req, res) => {
   let movieId = [req.params.id];
   console.log(movieId);
@@ -34,6 +32,31 @@ app.post('/actors/add', (req, res) => {
       console.log(`actors POST error=${err}`);
     }
     res.send(`User added with ID: ${id}`);
+  });
+});
+
+app.put('/actors/update', (req, res) => {
+  const {name, title, role, photo, bio, filmography, id} = req.body;
+  console.log(req.params.id);
+  console.log('PUT', name, title, role, photo, bio, filmography, id);
+  db.updateActor(name, title, role, photo, bio, filmography, id, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log(`actors PUT error=${err}`);
+    }
+    res.send(`User updated for ID: ${id}`);
+  });
+});
+
+app.delete('/actors/delete', (req, res) => {
+  const {id} = req.body;
+  console.log(id);
+  db.deleteActor(id, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+      console.log(`actors DELETE error=${err}`);
+    }
+    res.send(`User deleted for ID: ${id}`);
   });
 });
 
