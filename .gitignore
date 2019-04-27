@@ -21,6 +21,7 @@ get-pip.py
 actorData.csv
 movieData.csv
 movieDataNoID.csv
+ArtilleryId.csv
 
 pids
 *.pid

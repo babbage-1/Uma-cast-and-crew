@@ -16,7 +16,9 @@
     "seed:postgres:actor": "node --max-old-space-size=4096 ./database/postgres/seedPostgresqlActor.js",
     "seed:postgres:movie": "node --max-old-space-size=4096 ./database/postgres/seedPostgresqlMovie.js",
     "seed:cassandra:movie": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraMovie.cql",
-    "seed:cassandra:actor": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraActor.cql"
+    "seed:cassandra:actor": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraActor.cql",
+    "idGenerator": "node --max-old-space-size=4096 ./database/CSVfilewrite/createID.js",
+    "artilleryTest": "artillery run test.yml"
   },
   "dependencies": {
     "acorn": "^6.1.1",
@@ -28,6 +30,7 @@
     "faker": "^4.1.0",
     "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
+    "newrelic": "^5.7.0",
     "pg": "^7.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
