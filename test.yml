@@ -3,36 +3,38 @@ config:
   phases:
     - duration: 60
       arrivalRate: 10
-      rampTo: 400
+      rampTo: 50
     - duration: 60
-      arrivalRate: 400
+      arrivalRate: 50
   defaults:
     headers:
       # x-my-service-auth: '987401838271002188298567'
   payload:
-    path: "ArtilleryId.csv"
+    path: "ArtilleryId50.csv"
     fields:
       - "id"
     skipheader: true
 scenarios:
   - name: "GET and POST requests"
-    weight: 19
+    # weight: 19
     flow:
-      - get:
-          url: "/{{ id }}"
-  - name: "GET and POST requests"
-    weight: 1
-    flow:
-      - post:
-          url: "/add"
-          json:
-            name: "Andrew Cord"
-            title: "another one"
-            role: "VIP"
-            photo: "https://s3.amazonaws.com/uifaces/faces/twitter/lisovsky/128.jpg"
-            bio: "very fun person"
-            filmography: "{Bicycle, Torn, Apart }"
-            movieId: "100"
+      - loop:
+        - get:
+            url: "/{{ id }}"
+            count: 10
+  # - name: "GET and POST requests"
+  #   weight: 1
+  #   flow:
+  #     - post:
+  #         url: "/add"
+  #         json:
+  #           name: "Andrew Cord"
+  #           title: "another one"
+  #           role: "VIP"
+  #           photo: "https://s3.amazonaws.com/uifaces/faces/twitter/lisovsky/128.jpg"
+  #           bio: "very fun person"
+  #           filmography: "{Bicycle, Torn, Apart }"
+  #           movieId: "100"
 
 
 

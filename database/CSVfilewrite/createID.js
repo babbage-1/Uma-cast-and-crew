@@ -5,8 +5,8 @@ const writer = csvWriter();
 //creates movie csv file
 const idGen = () => {
   console.time('timing seed');
-  writer.pipe(fs.createWriteStream('ArtilleryId.csv'));
-  for (let i = 0; i < 10000; i++) {
+  writer.pipe(fs.createWriteStream('ArtilleryId50.csv'));
+  for (let i = 0; i < 50; i++) {
     writer.write({
       id: (Math.floor(Math.random() * (10000000 - 1)) + 1)
     });
