@@ -38,7 +38,7 @@ const seedPostgresMovie = async () => {
 
     console.log('adding index to column named "movieid"!');
     await client.query(`
-    CREATE INDEX movieidindex ON movieinfo (id);
+    CREATE INDEX movieidindex ON movieinfo (movieid);
     `);
 
     console.log('commiting!');

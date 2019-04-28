@@ -1,4 +1,5 @@
 require('newrelic');
+const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require ('cors');
 const app = express();
@@ -10,14 +11,26 @@ app.use(cors());
 app.use('/', express.static('client/dist'));
 app.use('/:id', express.static('client/dist'));
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+// app.get('/actors/:id', (req, res) => {
+//   let movieId = req.params.id;
+//   db.getActorById(movieId, (err, results) => {
+//     if (err) {
+//       res.sendStatus(500);
+//       console.log(`actors GET error=${err}`);
+//     }
+//     res.status(200).json(results.rows);
+//   });
+// });
 
 app.get('/actors/:id', async (req, res) => {
-  let movieId = req.params.id;
+  let movieId = Number(req.params.id);
   console.log(movieId);
   try{
   const movieGetReq = await db.getActorById(movieId);
-  console.log(movieGetReq)
+  // console.log(movieGetReq)
     res.status(200).send(movieGetReq);
   } catch(e){
     if (Error.Message === 'Error Inside DB Get') {

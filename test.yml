@@ -6,6 +6,7 @@ config:
       rampTo: 50
     - duration: 60
       arrivalRate: 50
+      name: "Sustained max load"
   defaults:
     headers:
       # x-my-service-auth: '987401838271002188298567'
@@ -14,15 +15,18 @@ config:
     fields:
       - "id"
     skipheader: true
+  http:
+    pool: 20
 scenarios:
-  - name: "GET and POST requests"
+  - name: "GET requests"
     # weight: 19
     flow:
       - loop:
         - get:
             url: "/{{ id }}"
-            count: 10
-  # - name: "GET and POST requests"
+        - think: 5
+        count: 40
+  # - loop:
   #   weight: 1
   #   flow:
   #     - post:

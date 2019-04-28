@@ -19,12 +19,22 @@ const getActorById = async (id) => {
   }
   try {
     const res = await pool.query(getQuery);
-    return res.rows[0];
+    return res.rows;
   } catch (e) {
     console.log(e.stack);
     throw e;
   }
 };
+
+// const getActorById = (id, callback) => {
+//   pool.query('SELECT * from ActorInfo INNER JOIN MovieInfo ON movieinfo.ACTORID=actorInfo.ID WHERE movieinfo.movieid=$1', [id], (err, results) => {
+//     if (err) {
+//       callback(err);
+//     } else {
+//       callback(null, results);
+//     }
+//   });
+// }
 
 const createActor = async(name, title, role, photo, bio, filmography, movieId) => {
   const client = await pool.connect();
@@ -35,10 +45,10 @@ const createActor = async(name, title, role, photo, bio, filmography, movieId) =
     console.log('1st query executed');
     // const secondQuery = await client.query('SELECT id from actorInfo WHERE name=$1 AND title=$2', [name, title]);
     // console.log('2nd query executed');
-    console.log(firstQuery.rows[0].id);
+    // console.log(firstQuery.rows[0].id);
     const data = firstQuery.rows[0].id;
     const thirdQuery = await client.query('INSERT INTO movieInfo(movieId, actorid) VALUES($1,$2) RETURNING id', [movieId, data]);
-    console.log(thirdQuery.rows[0].id);
+    // console.log(thirdQuery.rows[0].id);
     await client.query('COMMIT');
     return thirdQuery.rows[0].id;
   } catch (e) {
