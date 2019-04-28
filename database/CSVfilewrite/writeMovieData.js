@@ -4,7 +4,6 @@ const writer = csvWriter();
 const actorGen = require('./writeactorData');
 
 let movieId = 0;
-let counter = 1;
 
 //creates movie csv file
 const movieGen = () => {
@@ -15,9 +14,8 @@ const movieGen = () => {
     var randInt = (Math.floor(Math.random() * (6 - 3)) + 3);
     for (let j = 0; j < randInt; j++) {
       writer.write({
-        id: counter++,
         movieId: movieId,
-        actor: (Math.floor(Math.random() * (1000 - 1)) + 1)
+        actorId: (Math.floor(Math.random() * (1000 - 1)) + 1)
       });
     }
   }

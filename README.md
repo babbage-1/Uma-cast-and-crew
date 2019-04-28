@@ -41,17 +41,15 @@ npm install
 ```
 // Added endpoints of POST, PUT and DELETE ================
 
-Create a RESTful API for a resource named `cows` that responds to the following endpoints:
-
 
 GET - /actors/:id
 Get all actors for a specific movie from the database.
 
 POST - /actors/add
-Add an actor to the database.
+Add an actor to the database and add actor to a specific movie in the database.
 
-PUT - /actors/update/
+PUT - /actors/update
 Update an actor in the database.
 
-DELETE - /actors/remove/
+DELETE - /actors/remove
 Remove an actor from the database.

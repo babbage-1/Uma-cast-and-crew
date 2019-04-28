@@ -1,6 +1,6 @@
 const { Pool} = require('pg');
 const path = require('path');
-const { config } = require('./config');
+// const { config } = require('./config');
 // const pool = new Pool(config);
 const pool = new Pool({
   user: 'postgres',
@@ -20,21 +20,25 @@ const seedPostgresMovie = async () => {
     console.log('creating movieinfo table!');
     await client.query(`
       CREATE TABLE IF NOT EXISTS MovieInfo(
-        id NUMERIC NOT NULL,
         movieId NUMERIC NOT NULL,
         actorId NUMERIC NOT NULL
         );
     `);
 
     console.log('writing to database!');
-    const copyPath = path.join(__dirname, '../movieData.csv');
+    const copyPath = path.join(__dirname, '../../movieData.csv');
     await client.query(`
       COPY MovieInfo FROM '${copyPath}' WITH (FORMAT CSV, HEADER);
     `);
 
+    console.log('adding auto serial index column named "id"!');
+    await client.query(`
+      ALTER TABLE movieinfo ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
+    `);
+
     console.log('adding index to column named "movieid"!');
     await client.query(`
-    CREATE INDEX movieidindex ON movieinfo (id);
+    CREATE INDEX movieidindex ON movieinfo (movieid);
     `);
 
     console.log('commiting!');

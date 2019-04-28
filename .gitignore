@@ -21,7 +21,9 @@ get-pip.py
 actorData.csv
 movieData.csv
 movieDataNoID.csv
+ArtilleryId.csv
 
+newrelic.js
 pids
 *.pid
 logs

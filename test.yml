@@ -1,0 +1,104 @@
+config:
+  target: 'http://localhost:2002/actors'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 50
+    - duration: 60
+      arrivalRate: 50
+      name: "Sustained max load"
+  defaults:
+    headers:
+      # x-my-service-auth: '987401838271002188298567'
+  payload:
+    path: "ArtilleryId50.csv"
+    fields:
+      - "id"
+    skipheader: true
+  http:
+    pool: 20
+scenarios:
+  - name: "GET requests"
+    # weight: 19
+    flow:
+      - loop:
+        - get:
+            url: "/{{ id }}"
+        - think: 5
+        count: 40
+  # - loop:
+  #   weight: 1
+  #   flow:
+  #     - post:
+  #         url: "/add"
+  #         json:
+  #           name: "Andrew Cord"
+  #           title: "another one"
+  #           role: "VIP"
+  #           photo: "https://s3.amazonaws.com/uifaces/faces/twitter/lisovsky/128.jpg"
+  #           bio: "very fun person"
+  #           filmography: "{Bicycle, Torn, Apart }"
+  #           movieId: "100"
+
+
+
+
+
+
+# # Basic Test
+# # config:
+# #   target: 'http://localhost:2002'
+# #   phases:
+# #     - duration: 5
+# #       arrivalRate: 1
+# #   defaults:
+# #     headers:
+# #       x-my-service-auth: '987401838271002188298567'
+# # scenarios:
+# #   - flow:
+# #     - get:
+# #         url: "/10000000"
+
+# # config:
+# #   target: 'http://localhost:2002/actors'
+# #   phases:
+# #     - duration: 5
+# #       arrivalRate: 20
+# #   defaults:
+# #     headers:
+# #       # x-my-service-auth: '987401838271002188298567'
+# #   payload:
+# #       path: "ArtilleryId.csv"
+# #       fields:
+# #         - "id"
+# #       skipHeader: true
+# # scenarios:
+# #   - flow:
+# #     - get:
+# #         url: "/{{ id }}/"
+
+# config:
+#   target: 'http://localhost:2002/actors'
+#   phases:
+#     - duration: 5
+#       arrivalRate: 1
+#   defaults:
+#     headers:
+#       # x-my-service-auth: '987401838271002188298567'
+#   payload:
+#       path: "ArtilleryId.csv"
+#       fields:
+#         - "id"
+#       skipHeader: true
+# scenarios:
+#   - flow:
+#     - post:
+#         url: "/add"
+#         json:
+#           name: "Andrew Cord"
+#           title: "another one"
+#           role: "VIP"
+#           photo: "https://s3.amazonaws.com/uifaces/faces/twitter/lisovsky/128.jpg"
+#           bio: "very fun person"
+#           filmography: "{Bicycle, Torn, Apart }"
+#           movieId: "100"
