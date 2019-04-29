@@ -40,16 +40,6 @@ const seedPostgresActor = async () => {
       ALTER TABLE actorinfo ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
     `);
 
-    console.log('adding auto serial index on column named "role"!');
-    await client.query(`
-    CREATE INDEX roleindex ON actorinfo (role);
-    `);
-
-    console.log('adding auto serial index on column named "title"!');
-    await client.query(`
-    CREATE INDEX titleindex ON actorinfo (title);
-    `);
-
     console.log('commiting!');
     await client.query('COMMIT');
     // Transaction END!
