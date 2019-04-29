@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // app.use(express.json());
 
-// app.get('/actors/:id', (req, res) => {
+// app.get('/actors/:id', (rq, res) => {
 //   let movieId = req.params.id;
 //   db.getActorById(movieId, (err, results) => {
 //     if (err) {
