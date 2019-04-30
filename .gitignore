@@ -1,3 +1,7 @@
+##Deployment##
+client/
+
+
 ## MAC files ##
 .DS_Store
 
@@ -13,10 +17,11 @@ get-pip.py
 .vscode
 
 ##DATABASE FOLDER##
-# database/CSVfilewrite
-# database/cassandra
-# database/mongo
-/database/postgres/config.js
+database/CSVfilewrite
+database/cassandra
+database/mongo
+database/postgres/seedPostgresqlActor.js
+database/postgres/seedPostgresqlMovie.js
 
 ## CSV FILES##
 actorData.csv
