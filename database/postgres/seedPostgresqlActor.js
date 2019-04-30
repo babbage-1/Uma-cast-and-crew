@@ -1,14 +1,22 @@
 const { Pool} = require('pg');
 const path = require('path');
-// const { config } = require('./config');
+const { config } = require('./config');
 // const pool = new Pool(config);
 const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'SDC',
-  password: '',
-  port: 5432,
+  user: config.user,
+  host:  config.host,
+  database: config.database,
+  password: config.password,
+  port: config.port,
 });
+
+// const pool = new Pool({
+  //   user: 'postgres',
+  //   host: '127.0.0.1',
+  //   database: 'SDC',
+  //   password: '',
+  //   port: 5432,
+  // });
 
 const seedPostgresActor = async () => {
   const client = await pool.connect();
@@ -31,23 +39,14 @@ const seedPostgresActor = async () => {
 
     console.log('writing to database!');
     const copyPath = path.join(__dirname, '../../actorData.csv');
+    const envPath = '/var/lib/pgsql92/actorData.csv'
     await client.query(`
-      COPY ActorInfo FROM '${copyPath}' WITH (FORMAT CSV, HEADER);
+      COPY ActorInfo FROM '${envPath}' WITH (FORMAT CSV, HEADER);
     `);
 
     console.log('adding auto serial index column named "id"!');
     await client.query(`
-      ALTER TABLE actorinfo ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
-    `);
-
-    console.log('adding auto serial index on column named "role"!');
-    await client.query(`
-    CREATE INDEX roleindex ON actorinfo (role);
-    `);
-
-    console.log('adding auto serial index on column named "title"!');
-    await client.query(`
-    CREATE INDEX titleindex ON actorinfo (title);
+      ALTER TABLE actorinfo ADD COLUMN id SERIAL PRIMARY KEY;
     `);
 
     console.log('commiting!');

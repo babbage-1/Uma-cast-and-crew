@@ -1,20 +1,23 @@
 require('newrelic');
-const bodyParser = require('body-parser');
 const express = require('express');
-const cors = require ('cors');
 const app = express();
+const bodyParser = require('body-parser');
+const cors = require ('cors');
 const path = require('path');
 const db = require('../database/PGindex');
 const port = process.env.PORT || 2002;
 app.use(cors());
 
-app.use('/', express.static('client/dist'));
-app.use('/:id', express.static('client/dist'));
+app.use('/:id', express.static(__dirname + '/../client/dist'));
+
+// app.use('/', express.static('client/dist'));
+// app.use('/:id', express.static('client/dist'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+// app.use(express.json());
 
-// app.get('/actors/:id', (req, res) => {
+// app.get('/actors/:id', (rq, res) => {
 //   let movieId = req.params.id;
 //   db.getActorById(movieId, (err, results) => {
 //     if (err) {
@@ -27,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/actors/:id', async (req, res) => {
   let movieId = Number(req.params.id);
-  console.log(movieId);
+  // console.log(movieId);
   try{
   const movieGetReq = await db.getActorById(movieId);
   // console.log(movieGetReq)

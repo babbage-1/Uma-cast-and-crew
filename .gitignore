@@ -16,12 +16,14 @@ get-pip.py
 # database/CSVfilewrite
 # database/cassandra
 # database/mongo
+/database/postgres/config.js
 
 ## CSV FILES##
 actorData.csv
 movieData.csv
 movieDataNoID.csv
 ArtilleryId.csv
+ArtilleryId50.csv
 
 newrelic.js
 pids
