@@ -16,6 +16,7 @@ get-pip.py
 # database/CSVfilewrite
 # database/cassandra
 # database/mongo
+/database/postgres/config.js
 
 ## CSV FILES##
 actorData.csv

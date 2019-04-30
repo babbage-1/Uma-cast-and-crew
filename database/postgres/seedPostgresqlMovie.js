@@ -1,14 +1,23 @@
 const { Pool} = require('pg');
 const path = require('path');
-// const { config } = require('./config');
+const { config } = require('./config');
 // const pool = new Pool(config);
+
 const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'SDC',
-  password: '',
-  port: 5432,
+  user: config.user,
+  host:  config.host,
+  database: config.database,
+  password: config.password,
+  port: config.port,
 });
+
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: '127.0.0.1',
+//   database: 'SDC',
+//   password: '',
+//   port: 5432,
+// });
 
 const seedPostgresMovie = async () => {
   const client = await pool.connect();
@@ -27,13 +36,14 @@ const seedPostgresMovie = async () => {
 
     console.log('writing to database!');
     const copyPath = path.join(__dirname, '../../movieData.csv');
+    const envPath = '/var/lib/pgsql92/movieData.csv'
     await client.query(`
-      COPY MovieInfo FROM '${copyPath}' WITH (FORMAT CSV, HEADER);
+      COPY MovieInfo FROM '${envPath}' WITH (FORMAT CSV, HEADER);
     `);
 
     console.log('adding auto serial index column named "id"!');
     await client.query(`
-      ALTER TABLE movieinfo ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
+      ALTER TABLE movieinfo ADD COLUMN id SERIAL PRIMARY KEY;
     `);
 
     console.log('adding index to column named "movieid"!');

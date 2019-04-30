@@ -18,7 +18,8 @@
     "seed:cassandra:movie": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraMovie.cql",
     "seed:cassandra:actor": "cqlsh 127.0.0.1 -f ./database/cassandra/cassandraActor.cql",
     "idGenerator": "node --max-old-space-size=4096 ./database/CSVfilewrite/createID.js",
-    "artilleryTest": "artillery run test.yml"
+    "artilleryTest": "artillery run test.yml",
+    "enterPostgresEC2": "ssh -i postgres-test.pem ec2-user@ec2-54-215-226-106.us-west-1.compute.amazonaws.com"
   },
   "dependencies": {
     "acorn": "^6.1.1",
