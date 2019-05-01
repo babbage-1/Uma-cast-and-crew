@@ -45,9 +45,15 @@ class App extends React.Component {
 
   getCast() {
     let idRoute = window.location.pathname;
-    let parsedId = Number(idRoute.split('').filter(char => char !== '/').join(''));
-    console.log('parseId in GET actors', parsedId);
-    fetch(`http://localhost:2002/actors/${parsedId || 1}`)
+    const host = window.location.origin;
+    // let parsedId = Number(idRoute.split('').filter(char => char !== '/').join(''));
+    const idArray = window.location.pathname.split("/");
+    console.log(idArray);
+    const idIndex = idArray.length - 2
+    const idRouteModified = idArray[idIndex];
+    console.log('THE MODIFIED ID I"M GOIN TO USE WORK DAMMIT', idRouteModified);
+    // console.log('parseId in GET actors', parsedId);
+    fetch(`${host}/actors/${idRouteModified || 1}`)
       .then(res => res.json())
       .then(castInfo => {
         console.log('cast info: ', castInfo);

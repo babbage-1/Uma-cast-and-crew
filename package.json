@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "react-dev": "webpack -d --watch",
+    "react-dev": "webpack -p --watch",
     "server-dev": "nodemon server/index.js",
     "seed-db": "mongoimport --db fandangit --collection actors --drop --file database/fandangit-cast-2001.json",
     "newSeed": "node --max_old_space_size=8048 ./database/CSVfilewrite/writeMovieData.js",
