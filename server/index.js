@@ -8,7 +8,7 @@ const db = require('../database/PGindex');
 const port = process.env.PORT || 2002;
 app.use(cors());
 
-app.use('/:id', express.static(__dirname + '/../client/dist'));
+app.use('/cast/:id', express.static(__dirname + '/../client/dist'));
 
 // app.use('/', express.static('client/dist'));
 // app.use('/:id', express.static('client/dist'));
